@@ -13,26 +13,38 @@
     <div class="wrapper">
       <h1>Star Wars</h1>
       <form class="form">
-        <select id="select">
-          <option value="films">Фильмы</option>
-          <option value="people">Люди</option>
-          <option value="planets">Планеты</option>
-          <option value="species">Другие виды</option>
-          <option value="starships">Звездные корабли</option>
-          <option value="vehicles">Транспортные средства</option>
+        <select id="select" class="select">
+          <option value="films">Movies</option>
+          <option value="people">People</option>
+          <option value="planets">Planets</option>
+          <option value="species">Other species</option>
+          <option value="starships">Starships</option>
+          <option value="vehicles">Vehicles</option>
         </select>
         <input
           type="number"
-          placeholder="Введите номер"
+          placeholder="Pick a number"
           max="10"
           min="1"
           class="number"
         />
         <button class="btn">Start</button>
       </form>
-      <div class="load"></div>
       <div class="info"></div>
       <div class="error"></div>
+      <div class="scene">
+        <div class="carousel">
+          <img style="--i: 000deg" src="./images/yoda.jpg" />
+          <img style="--i: 040deg" src="./images/darth.jpg" />
+          <img style="--i: 080deg" src="./images/starship.jpg" />
+          <img style="--i: 120deg" src="./images/luke_leia.jpg" />
+          <img style="--i: 160deg" src="./images/robots.jpeg" />
+          <img style="--i: 200deg" src="./images/tatooine.jpg" />
+          <img style="--i: 240deg" src="./images/anakin_obi.jpg" />
+          <img style="--i: 280deg" src="./images/han_chewi.jpg" />
+          <img style="--i: 320deg" src="./images/stormtroopers.jpeg" />
+        </div>
+      </div>
     </div>
     <script src="./index.js"></script>
   </body>
