@@ -4,7 +4,8 @@ document.querySelector(".form").addEventListener("submit", (event) => {
   //беру необходимые элементы
   const btn = document.querySelector(".btn");
   const selectList = document.getElementById("select").value;
-  const number = document.querySelector(".number").value;
+  const numberInput = document.querySelector(".number");
+  const number = numberInput.value;
   const infoBlock = document.querySelector(".info");
   const errorDiv = document.querySelector(".error");
   const load = document.querySelector(".load");
@@ -18,34 +19,30 @@ document.querySelector(".form").addEventListener("submit", (event) => {
   infoBlock.textContent = "Загрузка ...";
 
   //создаю  фетч запрос
-  fetch(`http://swapi.dev/api/${selectList}/${number}/`)
+  fetch(`https://swapi.dev/api/${selectList}/${number}/`)
     .then((res) => {
       if (!res.ok) {
-        throw new Error("Сервер не доступен!");
+        if (res.status === 404) {
+          throw new Error("Такого объекта нет!");
+        }
+        throw new Error("Ошибка сервера!");
       }
       return res.json();
     })
     .then((res) => {
-      console.log(res);
-      errorDiv.innerHTML = "";
-      /* infoBlock.innerHTML = `
-          <div>${res.name}</div>`; */
-      if (selectList !== "films") {
-        infoBlock.innerHTML = `
-                  <div>${res.name}</div>
-              `;
-      } else if (selectList === "films") {
-        infoBlock.innerHTML = `
-              <div>${res.title}</div>
-          `;
+      if (selectList === "films") {
+        infoBlock.innerHTML = `<div>${res.title}</div>`;
+      } else {
+        infoBlock.innerHTML = `<div>${res.name}</div>`;
       }
     })
     .catch((error) => {
       infoBlock.textContent = "";
-      errorDiv.innerHTML = `
-          <div><span>Ошибка:</span>${error.message}</div>`;
+      errorDiv.innerHTML = `<div><span>Ошибка:</span> ${error.message}</div>`;
     })
     .finally(() => {
-      number.value = "";
+      numberInput.value = "";
+      load.textContent = "";
+      btn.disabled = false;
     });
 });

@@ -7,6 +7,7 @@ body {
   flex-direction: row;
   justify-content: center;
   padding: auto 2%;
+  gap: 15px;
 }
 h1,
 .btn {
@@ -14,7 +15,9 @@ h1,
   font-family: "Star Wars", sans-serif;
 }
 .number {
-  width: 110px;
+  min-width: 120px;
+  width: 100%;
+  max-width: 200px;
 }
 .btn {
   width: 150px;
@@ -27,13 +30,19 @@ h1 {
   margin-top: 3%;
   text-align: center;
 }
+select,
+input {
+  font-size: 20px;
+}
 .info,
 .error {
+  font-size: 26px;
   margin: 5% auto;
   color: #fed34f;
   text-align: center;
 }
 .stars {
+  animation: star-move 120s linear infinite;
   position: absolute;
   top: 100px;
   left: -500px;
